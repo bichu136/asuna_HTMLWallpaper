@@ -1,0 +1,18 @@
+<script src="/javascripts/FetchFunctions.js"></script>
+<div class="data-view" style="background-color: cornflowerblue; min-height: 1000px;max-width: 1000px; min-width: 1000px;">
+    <h2>name</h2>
+    <p>temperature: x *C</p>
+    <h3>memory</h3>
+    <div class="graph" id="memory_graph" style = "max-height: 100px; min-height: 100px; min-width: 100%; background-color: darkorange;">
+        <svg>
+            <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+        </svg>
+    </div>
+    <h3>ultilization</h3>
+    <div class="graph" id="ultilization_graph" style = "max-height: 100px; min-height: 100px; min-width: 100%; background-color: darkorange;">
+        <canvas id= "ult-canvas" style = "width: 100%;
+        max-height: inherit;
+        min-height: inherit">
+        </canvas>
+    </div>
+</div>

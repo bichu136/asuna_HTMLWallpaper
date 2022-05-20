@@ -1,0 +1,95 @@
+<!-- 
+<!DOCTYPE html> -->
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <!-- <img src="/images/SVG/person-svgrepo-com.svg" class="svg" id="svg-person">
+    <img src="/images/SVG/home-svgrepo-com.svg"class="svg" id="svg-home">
+    <img src="/images/SVG/hardware-svgrepo-com.svg"class="svg" id="svg-hardware">
+    <img src="/images/SVG/folder-svgrepo-com.svg"class="svg" id="svg-folder">
+    <img src="/images/SVG/task-list-svgrepo-com.svg" class="svg" id="svg-task-list"> -->
+    <script src="/javascripts/GlobalVariable.js"></script>
+    <script src="/javascripts/Views/SliderItemView.js"></script>
+    <script src="/javascripts/Views/FolderNode.js"></script>
+    <script src="/javascripts/Views/SysInfoView.js"></script>
+
+    
+    <script src="/javascripts/FetchFunctions.js"></script>
+    <button id="menu-button" style="background-color:rgba(219, 210, 210, 0.712); max-height:100px;font-size:40px;position:absolute; top:1%;left:1%;" > < </button>
+      <div class="page">
+    
+      <div id="slider-container">
+        
+        <slider-item class="slider-item">
+          <img src="/images/SVG/home-svgrepo-com.svg" class="svg" id="svg-home">
+          <div class="subslider-container"><%= home%></div>
+        </slider-item>
+          
+        <slider-item class="slider-item">
+          <img src="/images/SVG/hardware-svgrepo-com.svg" class="svg" id="svg-hardware">
+          <div class="subslider-container" id = "hardware-container-outer">
+            <div id = "hardware-container">
+              <div class="sys-info" id="sys-info-2">
+                <div style="min-width:50px;min-height: 50px; background-color: chocolate;">
+                  
+                </div>
+                <div style = "min-width:50px;min-height: 150px; background-color: burlywood">
+                  disks_used/disks_total
+                  disk_IO_speed
+                  RAM_usage/ram_total
+                  
+                </div>
+              </div>
+              <div class="sys-info" id = "sys-info-3">
+              </div>
+              <div class="sys-info" id = "sys-info-1">
+              </div>
+            </div>
+            <button class="hardware-btn">
+              gpu
+            </button >
+            <button class="hardware-btn">
+              cpu
+            </button>
+            <button class="hardware-btn">
+              test
+            </button>
+          </div>
+        </slider-item>
+
+        <slider-item class="slider-item">
+          <img src="/images/SVG/person-svgrepo-com.svg" class="svg" id="svg-person">
+          <div class="subslider-container"><%= person%></div>
+        </slider-item>
+
+        <slider-item class="slider-item">
+          <img src="/images/SVG/task-list-svgrepo-com.svg" class="svg" id="svg-task-list">
+          <div class="subslider-container"><%= todo%></div>
+        </slider-item>
+          
+          <slider-item class="slider-item"><img src="/images/SVG/folder-svgrepo-com.svg" class="svg" id="svg-folder">
+            <div class="subslider-container">
+              <div style="clear:both"></div>
+              <folder-node class="tree-node">
+                <p>/home/bichu136/Downloads</p>
+              </folder-node>
+              <folder-node class="tree-node">
+                <p>/media/Code_And_Project</p>
+              </folder-node>
+              <folder-node class="tree-node">
+                <p>/media/Video</p>
+              </folder-node>
+              <folder-node class="tree-node">
+                <p>/media/DATA</p>
+              </folder-node>
+            </div>
+          </slider-item>
+      </div>       
+
+    </div>
+    <script src="/javascripts/InitView.js"></script>
+  </body>
+</html>

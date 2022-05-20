@@ -1,0 +1,199 @@
+body{
+    background-image:url("/images/yande.re 881062 asuna_(sword_art_online) sword sword_art_online tagme toya_kento.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    overflow:hidden;
+}
+
+.slider-item{
+    min-height:7vw;
+    min-width: 7%;
+    max-height:7vw;
+    max-width: 7%;
+    background-color:white;
+    margin:2%;
+    text-align: center;
+    border-radius: 50%;
+    border-style: solid;
+    border-width:0.65vw;
+    border-color: lightgray;
+    outline: solid 0.5vw white;
+    display:flex;
+}
+.svg{
+    /* min-height:75vw;
+    min-width: 75%;
+    max-height:75vw;
+    max-width: 75%; */
+    /* background-color: lightgreen; */
+    margin:17.5%;
+    min-width:65%;
+    max-width:65%; 
+    min-height:65%;
+    filter: invert(26%) sepia(2%) saturate(1326%) hue-rotate(155deg) brightness(89%) contrast(87%);
+}
+.subslider-container{
+    padding-left: 0.5vw;
+    position:relative;
+    top: 0px;
+    left:0px;
+    clear:both;
+    /* max-height:75vh; */
+    /* overflow: auto; */
+    /* visibility: hidden; */
+    /* visibility: hidden; */
+    /* min-width:100vw; */
+    /* max-width:200vw; */
+    /* min-height:100vh; */
+    width:fit-content;
+    min-width: 15vw;
+    min-height: 10vh;
+    height:fit-content;
+    /* background-color: lime; */
+    transition:visibility 33ms;
+}
+.page{
+    height:100%;
+    width:100%;
+    /* background-color:red; */
+    /* display:flex;
+    flex-direction: row; */
+    overflow:hidden;
+}
+#slider-container{
+    position: relative;
+    top:0px;
+    left:0px;
+    min-height:150px;
+    height:200vh;
+    max-height:1000vh;
+    /* max-height:100vh; */
+    margin:10px;
+    /* min-width:100%; */
+    visibility:visible;
+    /* background-color: blue; */
+    display: flex;
+    flex: 1 1 0px;
+    flex-direction:column;
+    /* overflow:auto; */
+    overflow: hidden;
+}
+.slider-item:hover>.subslider-container {
+    left:20%;
+    visibility:visible;
+}
+.slider-item>.subslider-container {
+    left:20%;
+    visibility:hidden;
+}
+.tree-node>.subslider-container{
+    left:100%;
+    visibility:hidden;
+}
+.tree-node:hover>.subslider-container{
+    left:100%;
+    visibility:visible;
+}
+
+.subslider-container:hover{
+    visibility: visible;
+}
+.tree-node{
+    display:block;
+    box-shadow: gray;
+    /* overflow: hidden; */
+    margin:1vh 0vh;
+    /* min-width:25%; */
+    background-color: red;
+    /* overflow-x: clip; */
+    min-width: 7vw;
+    /* width:fit-content; */
+    /* height:fit-content; */
+    min-height:3vw;
+    max-height:3vw;
+    /* overflow-x: hidden; */
+    max-width: 20vw;
+    /* z-index:100; */
+    /* font-size: 1.5vh; */
+    /* font-size: 1.2vw; */
+}
+.tree-node p{
+    /* overflow: auto; */
+    /* display:block; */
+    /* position:absolute; */
+    /* top :-3px; */
+    /* left:0.5vw; */
+    /* text-overflow: clip; */
+    overflow: clip;
+    overflow-x: clip;
+    white-space: nowrap;
+    /* min-width:fit-content; */
+    /* word-break: break-all; */
+    font-size: 1.25vw;
+    /* overflow:visible; */
+    /* width: inherit;
+    height: inherit;
+    max-width:inherit;
+    max-height: inherit; */
+
+    /* overflow-wrap:break-word; */
+}
+.file{
+    background-color: red;
+}
+.directory{
+    background-color: blue;
+}
+.sys-info{
+    /* margin-left: 5vw; */
+    background-color: cornflowerblue;
+    min-width: 100%;
+    min-height:50%;
+    flex-shrink: 0;
+    margin-right:3.5vw;
+    margin-left: 3.5vw;
+}
+#hardware-container-outer{
+    max-width:75vw;
+    min-width:75vw;
+    max-height:60vh;
+    min-height:60vh;
+}
+#hardware-container{
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display:flex;
+    max-width:75vw;
+    min-width:75vw;
+    max-height:55vh;
+    min-height:55vh;
+    transition: transform 0.7s ease-in-out;
+}
+.dataview{
+    text-align:left;
+    min-height: 100vh;
+    max-width: 100vw; 
+    min-width: 100vw;
+    
+}
+.graph{
+    background-color: goldenrod; 
+    min-height: 10vh;
+    max-height: 10vh;
+    max-width: 80vw; 
+    min-width: 80vw;
+}
+.canvas{
+    min-height: inherit;
+    max-height: inherit;
+    max-width: 100%; 
+    min-width: 100%;
+}
+.hardware-btn{
+    border-radius: 1px;
+    border-color: blue;
+    min-width:4vw;
+    min-height:4vh;
+}

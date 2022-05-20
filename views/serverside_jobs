@@ -1,0 +1,18 @@
+Init:
+ - mountWindows Drives.
+ - checkConnection.
+ - checkNVTop
+ - checkCPUInfo
+ - steamLogin?
+ - Load daily after mountWindowsDrives.
+ - Goal by X date
+Statistic:
+ - save daily work count
+ - save goal by X date
+ - save usage time per apps/process_name
+Modify daily work and goal by X date.
+
+RealTime Update to View:
+ - TODO: have an interval to update all hardware info.
+ - 
+ 

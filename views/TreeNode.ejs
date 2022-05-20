@@ -1,0 +1,10 @@
+<folderNode class="tree-node">
+    <%= node.name %>
+    <div style="clear:both"></div>
+    <div class="subslider-container">
+        <% node.child.forEach(function(child_node){ %>
+            <%- include('TreeNode', {node: child_node}); %>
+          <% }); %>
+    </div>
+    
+</div>

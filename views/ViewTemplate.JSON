@@ -1,0 +1,9 @@
+ {
+  "FileExplorer":{"icon":"svg-folder","ControllerType":"XXX","inputType":"Click"},
+  "Home":{"icon":"svg-home","description":"calendar, "},
+  "Hardware Monitor": {"icon":"svg-hardware"},
+  "TODO:":{"icon":"svg-task-list"},
+  "Application Access":{"icon":"svg-person"}
+ }
+
+ 
