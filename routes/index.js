@@ -4,7 +4,7 @@ var {exec }= require('child_process');
 var router = express.Router();
 var cpuStat = require("cpu-stat");
 const { Server } = require('http');
-let {gpuManager,cpuManager} =require('../worker')
+let {gpuManager,cpuManager,memoryManager} =require('../worker')
 
 
 /* GET home page. */
@@ -44,11 +44,20 @@ router.post("/folder",(req,res)=>{
 
 router.post("/gpustat",(req,res)=>{
     // let input = req.body;
-    res.send(JSON.stringify(gpuManager.GPUs));
+    res.send(JSON.stringify(gpuManager.GPUs,function(key, val) {
+        return val.toFixed ? Number(val.toFixed(3)) : val;
+    }));
 });
 router.post("/cpustat",(req,res)=>{
-    res.send(JSON.stringify(cpuManager));
+    res.send(JSON.stringify(cpuManager,function(key, val) {
+        return val.toFixed ? Number(val.toFixed(3)) : val;
+    }));
 });
+router.post('/ramstat',(req,res)=>{
+    res.send(JSON.stringify(memoryManager,function(key, val) {
+        return val.toFixed ? Number(val.toFixed(3)) : val;
+    }));
+})
 router.get('/testview', function(req, res, next) {
     res.render('DataViewItem');
   

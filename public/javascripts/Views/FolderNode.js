@@ -1,23 +1,31 @@
 class FolderNode extends HTMLElement{
     //TODO: 
+    //  + remake all the children for loading/
     //  + make element<p> scroll while hover
     //  + subslider-scroll with drag
     //  + scroll view to the latest children.
     constructor(){
         super()
-        let nameP = document.createElement('p');
-        nameP.textContent = "";
-        let subsliderContainer = document.createElement('div');
-        subsliderContainer.className="subslider-container";
+        parent = null;
         // this.appendChild(nameSpan);
+        
         // this.appendChild(subsliderContainer);
-        this.onmousedown = function (e){
+        this.onmouseenter = function (e){
+            //this.scrollIntoView({behavior: "smooth", block: "nearest", inline: "center"});
+            
+            let nameP = document.createElement('p');
+            nameP.textContent = "";
+            let subsliderContainer = document.createElement('div');
+            subsliderContainer.className="subslider-container";
+            
             if (this.children.length==2){
                 //FIXME: remove timeout
                 return;
             }
-            
-            // fetch something childs from server.
+            if (this.classList[1] == "file"){
+                return;
+            }
+            // fetch childs from server.
             console.log("fetching...")
             let Folder = this.children[0].textContent;
             console.log(Folder)
@@ -32,13 +40,14 @@ class FolderNode extends HTMLElement{
             Folder = root_dirs+Folder;
             let folder_info = null;
             ele = this
-            getChildrenFolder(Folder,function(r){console.log(folder_info);folder_info=r;});
-            let check_Timeout = setTimeout(function(){
+            getChildrenFolder(Folder,function(r){console.log(folder_info);folder_info=r;})
+            let check_Timeout = function(){
                     
                     if (folder_info==null){
                         //TODO:show loading
                         console.log("timeout");
-                        ele.showTimedOutBox();
+                        setTimeout(check_Timeout,100);
+
                     }
                     else{
                         console.log("fetch_done");
@@ -48,7 +57,8 @@ class FolderNode extends HTMLElement{
                         ele.clearTimeoutBox();
                         ele.appendChild(subSlider);
                     }
-                },250);
+                }
+            check_Timeout();
             console.log(folder_info);
             // folder_info.contents.forEach(function(item){
             //     let t = new FolderNode();
@@ -57,6 +67,7 @@ class FolderNode extends HTMLElement{
             // })
         }
         
+        //this.onmouseenter = this.onHover;
     }
     clearTimeoutBox(){
         let b = false;
@@ -82,6 +93,16 @@ class FolderNode extends HTMLElement{
     static fromJSONToHTMLchildren(folder_info){
         let subSliderContainter = document.createElement("div");
         subSliderContainter.className="subslider-container"
+        subSliderContainter.onmouseleave = function (e){
+            // if this.parent!=null
+            console.log("leave")
+            let x = document.getElementsByClassName("slider-item")[0];
+            x.scrollIntoView();
+        }
+        // subSliderContainter.onmouseenter = function (e){
+        //     // if this.parent!=null
+        //     subSliderContainter.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});;
+        // }
         let clear_both_div = document.createElement("div");
         clear_both_div.style = "clear:both";
         subSliderContainter.appendChild(clear_both_div);
@@ -95,9 +116,11 @@ class FolderNode extends HTMLElement{
             subSliderContainter.appendChild(folder_node);
         });
         subSliderContainter.onwheel = function(e){
-            e.stopImmediatePropagation();
+            
             console.log(e.deltaY);
             if(e.deltaY>0){
+                e.stopImmediatePropagation();
+                //for scroll up
                 let top_str = window.getComputedStyle(subSliderContainter, null).getPropertyValue('top');
                 let number_str = top_str.substring(0,top_str.length-2);
                 let top_number = parseFloat(number_str);
@@ -105,6 +128,8 @@ class FolderNode extends HTMLElement{
                 subSliderContainter.style.top = top_number.toString()+"px";
             }
             if(e.deltaY<0){
+                e.stopImmediatePropagation();
+                //for scroll down
                 let top_str = window.getComputedStyle(subSliderContainter, null).getPropertyValue('top');
                 let number_str = top_str.substring(0,top_str.length-2);
                 let top_number = parseFloat(number_str);

@@ -1,5 +1,6 @@
 body{
-    background-image:url("/images/yande.re 881062 asuna_(sword_art_online) sword sword_art_online tagme toya_kento.jpg");
+    background-image:url("/images/example backgrround.jpg");
+    background-color:green;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -57,6 +58,9 @@ body{
 .page{
     height:100%;
     width:100%;
+    position:relative;
+    top: 0px;
+    left:0px;
     /* background-color:red; */
     /* display:flex;
     flex-direction: row; */
@@ -78,7 +82,7 @@ body{
     flex: 1 1 0px;
     flex-direction:column;
     /* overflow:auto; */
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .slider-item:hover>.subslider-container {
     left:20%;
@@ -94,6 +98,7 @@ body{
 }
 .tree-node:hover>.subslider-container{
     left:100%;
+    transition: background-color 0.5s ease;
     visibility:visible;
 }
 
@@ -112,7 +117,7 @@ body{
     /* width:fit-content; */
     /* height:fit-content; */
     min-height:3vw;
-    max-height:3vw;
+    max-height:4vw;
     /* overflow-x: hidden; */
     max-width: 20vw;
     /* z-index:100; */

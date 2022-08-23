@@ -13,9 +13,9 @@ bằng việc sử dụng web wallpapper của KDE Plasma Desktop Enviroment, ch
 với những điều nói trên, việc duy nhất có thể điều khiển màn hình là hover chuột đến một thẻ nào đó.
 ## Screenshot
 ### Mặc định 
-![Mặc định]()
+![Mặc định](assets/wallpaper_posts/overall screen.png)
 ### Hardware: hover vào biểu tượng ổ cứng
-![CPU]()
-![GPU]() 
+![CPU](assets/wallpaper_posts/hardware_cpu.png)
+![GPU](assets/wallpaper_posts/hardware_gpu.png) 
 ### duyệt file: hover vào biểu tượng thư mục
-![Folder]() 
+![Folder](assets/wallpaper_posts/folder_explorer.png) 

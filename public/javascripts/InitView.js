@@ -9,9 +9,31 @@ let listSubSliderContainer = document.getElementsByClassName("subslider-containe
 
 
 sliderContainer.onwheel = function(e){
-    e.stopImmediatePropagation();
-    console.log(e.deltaY);
+    
+    console.log('root')
+    if (e.deltaX>0){
+        let left_str = window.getComputedStyle(sliderContainer, null).getPropertyValue('left');
+        let number_str = left_str.substring(0,left_str.length-2);
+        let left_number = parseFloat(number_str);
+        left_number-=10;
+        if (left_number>40){
+            left_number = 0;
+        }
+        sliderContainer.style.left = left_number.toString()+"px";
+    }
+    if(e.deltaX<0)
+    {
+        let top_str = window.getComputedStyle(sliderContainer, null).getPropertyValue('left');
+        let number_str = top_str.substring(0,top_str.length-2);
+        let top_number = parseFloat(number_str);
+        top_number+=10;
+        if (top_number>0){
+            top_number = 0;
+        }
+        sliderContainer.style.left = top_number.toString()+"px";
+    }
     if(e.deltaY>0){
+        e.stopImmediatePropagation();
         let top_str = window.getComputedStyle(sliderContainer, null).getPropertyValue('top');
         let number_str = top_str.substring(0,top_str.length-2);
         let top_number = parseFloat(number_str);
@@ -19,6 +41,7 @@ sliderContainer.onwheel = function(e){
         sliderContainer.style.top = top_number.toString()+"px";
     }
     if(e.deltaY<0){
+        e.stopImmediatePropagation();
         let top_str = window.getComputedStyle(sliderContainer, null).getPropertyValue('top');
         let number_str = top_str.substring(0,top_str.length-2);
         let top_number = parseFloat(number_str);
@@ -29,9 +52,10 @@ sliderContainer.onwheel = function(e){
 for(let i=0; i<listSubSliderContainer.length;i++){
     let element = listSubSliderContainer[i];
     element.onwheel = function(e){
-        e.stopImmediatePropagation();
+        
         console.log(e.deltaY);
         if(e.deltaY>0){
+            e.stopImmediatePropagation();
             let top_str = window.getComputedStyle(element, null).getPropertyValue('top');
             let number_str = top_str.substring(0,top_str.length-2);
             let top_number = parseFloat(number_str);
@@ -39,6 +63,7 @@ for(let i=0; i<listSubSliderContainer.length;i++){
             element.style.top = top_number.toString()+"px";
         }
         if(e.deltaY<0){
+            e.stopImmediatePropagation();
             let top_str = window.getComputedStyle(element, null).getPropertyValue('top');
             let number_str = top_str.substring(0,top_str.length-2);
             let top_number = parseFloat(number_str);
@@ -92,7 +117,6 @@ for (let i = 0;i<hardwareBtns.length;i++){
         }
     }
 }
-
 
 // const FlexSlider = {
 // 	// total no of items

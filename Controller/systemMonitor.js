@@ -133,71 +133,52 @@ class CPUManager{
         });
     }
 }
+
 class MemoryManager{
     constructor(){
-        this.name = "";
-        this.cores = 0;
-        this.virtualization = false;
-        this.coresUsage = [];//get all cores speed divided by max
-        this.coresTemperature = [];
-        this.physicalCores = 0;
-        this.cores = 0;
-        this.Usage = 1;
-        this.temperature = 0.0;
-        this.averageSpeed= 0.0;
+        this.UsedPercent = [];//get all cores speed divided by max
+        this.total = 0;
+        this.percentage = 1;
 
     }
     async init(cb){
-        await si.cpu((data)=>{
-            this.name = data.manufacturer + data.brand;
-            this.maxSpeed = data.speedMax;
-            this.virtualization = data.virtualization;
-            this.cores= data.cores;
-            this.physicalCores = data.physicalCores;
-            
+        await si.mem((data)=>{
+            let usePercent = data.used / data.total
+            this.UsedPercent.push(usePercent);//get all cores speed divided by max
+            this.total = data.total;
+            this.percentage = usePercent;
         });
         
-        //TODO: get all needed data.
-        await si.currentLoad((data)=>{
-                for(let i=0;i<data.cpus.length;i++){
-                   this.coresUsage.push([]);
-                }
-                for(let i=0;i<data.cpus.length;i++){
-                    this.coresUsage[i].push(data.cpus[i].load);
-                }
+        // await si.currentLoad((data)=>{
+        //         for(let i=0;i<data.cpus.length;i++){
+        //            this.coresUsage.push([]);
+        //         }
+        //         for(let i=0;i<data.cpus.length;i++){
+        //             this.coresUsage[i].push(data.cpus[i].load);
+        //         }
            
-            this.Usage = data.currentLoad;
-        });
-        await si.cpuTemperature((data)=>{
-                for(let i=0;i<data.cores.length;i++){
-                    this.coresTemperature.push([]);
-                }
-                for(let i=0;i<data.cores.length;i++){
-                    this.coresTemperature[i].push(data.cores[i]);
-                }
-            this.temperature = data.main;
-        });
-
+        //     this.Usage = data.currentLoad;
+        // });
+        // await si.cpuTemperature((data)=>{
+        //         for(let i=0;i<data.cores.length;i++){
+        //             this.coresTemperature.push([]);
+        //         }
+        //         for(let i=0;i<data.cores.length;i++){
+        //             this.coresTemperature[i].push(data.cores[i]);
+        //         }
+        //     this.temperature = data.main;
+        // });
     }
     async update(){
-        await si.currentLoad((data)=>{
-            for(let i=0;i<data.cpus.length;i++){
-                this.coresUsage[i].push(data.cpus[i].load);
-                if (this.coresUsage[i].length>60){
-                    this.coresUsage[i].shift();
-                };
-                this.Usage = data.currentLoad;
+        await si.mem((data)=>{
+            let usePercent = data.used / data.total
+            this.UsedPercent.push(usePercent);//get all cores speed divided by max
+            if (this.UsedPercent >60){
+                UsedPercent.shift();
             }
-        });
-        await si.cpuTemperature((data)=>{
-            for(let i=0;i<data.cores.length;i++){
-                this.coresTemperature[i].push(data.cores[i]);
-                if (this.coresTemperature[i].length>60){
-                    this.coresTemperature[i].shift();
-                };
-            }
-            this.temperature = data.main;
+            this.total = data.total;
+            this.percentage = usePercent;
         });
     }
 }
-module.exports = {GPUManager,GPU,CPUManager}
+module.exports = {GPUManager,GPU,CPUManager,MemoryManager}

@@ -3,18 +3,20 @@ const {
 } = require('worker_threads');
 const assert = require('assert');
 const {exec }= require('child_process');
-const { GPUManager, GPU,CPUManager } = require('./Controller/systemMonitor');
+const { GPUManager, GPU,CPUManager,MemoryManager } = require('./Controller/systemMonitor');
 let timeoutList = []
 
 if (isMainThread) {
     console.log("hi")
     var gpuManager = new GPUManager();
     var cpuManager = new CPUManager();
+    var memoryManager = new MemoryManager();
     let w = new Worker(__filename,{workerData});
     // send port to worker.
     // let worker using these port
     let gpuChannels = new MessageChannel();
     let cpuChannels = new MessageChannel();
+
     w.postMessage({
                     gpuTrans: gpuChannels.port1,
                     cpuTrans: cpuChannels.port1
@@ -32,6 +34,13 @@ if (isMainThread) {
             cpuManager.update()
             
         }
+        if (memoryManager.total == 0){
+            memoryManager.init();
+        }
+        else{
+            memoryManager.update();
+        }
+
     });
 
     w.on("error", error => {
@@ -44,7 +53,7 @@ if (isMainThread) {
 
     console.log("Execution in main thread");
     console.log("end")
-    module.exports = {gpuManager,cpuManager}
+    module.exports = {gpuManager,cpuManager,memoryManager}
 } else {
     parentPort.once('message', (value) => {
         assert( value.gpuTrans instanceof MessagePort);
